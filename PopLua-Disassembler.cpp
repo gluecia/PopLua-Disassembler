@@ -1,26 +1,25 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 #include "popFile.h"
+#include "util.h"
 
 using namespace popLua;
 
-std::vector <std::string> wholeLineArray;
+std::vector<std::string> wholeLineArray;
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
+  if (argc == 1) {
+    std::cout << "Requires a PopLua .luc file to be processed.";
+  } else {
+    popFile file;
+    std::ifstream in(argv[1], std::ios::binary);
+    in >> file;
+    std::ofstream out("output.txt");
+    out << file;
+    in.close();
+  }
+  std::cout << std::endl;
 
-	if (argc == 1) {
-		std::cout << "Requires a PopLua .luc file to be processed.";
-	}
-	else {
-		popFile file;
-		std::ifstream in(argv[1], std::ios::binary);
-		in >> file;
-		std::ofstream out("output.txt");
-		out << file;
-		in.close();
-	}
-	std::cout << std::endl;
-
-	system("Pause");
+  waitForInput();
 }
