@@ -1,6 +1,7 @@
 #include <cassert>
 #include <string>
 #include <iostream>
+#include <cstdio>
 #include "popConstant.h"
 
 namespace popLua {
@@ -11,7 +12,7 @@ namespace popLua {
 		int32_t valInt;
 		uint32_t strLen;
 		std::string temp = "";
-		char tempChr;
+		char16_t tempChr;
 
 		switch (type) {
 		case nil:
@@ -28,10 +29,13 @@ namespace popLua {
 			break;
 		case str:
 			infile.read(reinterpret_cast<char *>(&strLen), sizeof(strLen));
+
+			// THERE HAS TO BE A BETTER WAY 2 DO THIS BUT IM TOO DUMB TO FIGURE IT OUT!!!
 			for (int i = 0; i < strLen; i++) {
-				infile.read(reinterpret_cast<char *>(&tempChr), 1);
+				infile.read(reinterpret_cast<char *>(&tempChr), sizeof(char16_t));
 				temp += tempChr;
 			}
+
 			value = "\"" + temp.substr(0, strLen - 1) + "\"";
 			break;
 		default:

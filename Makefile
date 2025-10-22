@@ -1,13 +1,14 @@
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:%.cpp=build/%.o)
-LD = g++
-CXX = g++
+LD = clang++
+CXX = clang++
+CXXFLAGS = -Wall -std=c++23
 OUT = bin/pldec
 
 build/%.o: %.cpp
 	$(shell echo 1>&2 -e "Compiling \e[1m\e[32m$<\e[0m")
 
-	@$(CXX) -c -o $@ $<
+	@$(CXX) $(CXXFLAGS) -c -ggdb -o $@ $<
 
 .PHONY: pldec
 pldec: $(OUT)

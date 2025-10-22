@@ -2,12 +2,15 @@
 #define POPFILE_H
 
 #include "popChunk.h"
+#include "util.h"
 #include <iostream>
 #include <vector>
 #include <cstdint>
+#include <string>
 
 namespace popLua {
-
+	constexpr uint8_t HEADER_SIZE = 0x17;
+	
 	class popFile {
 	public:
 		~popFile();
@@ -15,11 +18,10 @@ namespace popLua {
 		friend std::istream& operator >> (std::istream& in, popFile &file);
 		friend std::ostream& operator << (std::ostream& out, popFile &file);
 	private:
-		const uint8_t static HEADER_SIZE = 0x17;
-		char* header;
-		uint32_t nameSize;
-		char* name;
-		popChunk* chunkArray;
+		char header[HEADER_SIZE];
+		u32 nameSize;
+		std::string name;
+		popChunk *chunkArray;
 		std::vector<std::string> stringArray;
 	};
 }

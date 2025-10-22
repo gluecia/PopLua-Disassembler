@@ -5,38 +5,39 @@
 #include "popLocal.h"
 #include "popUpval.h"
 #include "popConstant.h"
+#include "util.h"
 #include "popRegister.h"
 #include <vector>
 #include <iostream>
 #include <cstdint>
+#include <string>
 
 namespace popLua {
 
 	class popChunk {
 	public:
-		popChunk(uint8_t newDepth = 0);
+		popChunk(u8 newDepth = 0);
 		~popChunk();
 		int getLastLine();
-		void setDepth(uint8_t newDepth = 0);
+		void setDepth(u8 newDepth = 0);
 		friend std::istream& operator >> (std::istream& in, popChunk& chunk);
 		friend std::ostream& operator << (std::ostream& out, popChunk& chunk);
-		popConstant* constantArray;
-		std::string getReg(uint32_t reg, int loc);
+		std::vector<popConstant> constantArray;
+		std::string getReg(u32 reg, int loc);
 	private:
-		const uint8_t static INTRO_SIZE = 0x0C;
-		uint8_t depth;
-		char* intro;
-		uint32_t numOps;
-		uint32_t numOps_verify;
-		popOp* opArray;
-		uint32_t numLocals;
-		popLocal* localArray;
-		uint32_t numUpvals;
-		popUpval* upvalArray;
-		uint32_t numConstants;
+		u8 depth;
+		char intro[0x0C];
+		u32 numOps;
+		u32 numOps_verify;
+		std::vector<popOp> opArray;
+		u32 numLocals;
+		std::vector<popLocal> localArray;
+		u32 numUpvals;
+		std::vector<popUpval> upvalArray;
+		u32 numConstants;
 		
-		uint32_t numProto;
-		popChunk* chunkArray;
+		u32 numProto;
+		std::vector<popChunk> chunkArray;
 		std::vector<popRegister> registerArray;
 		std::vector<std::vector<popOp>> lineArray;
 	};
