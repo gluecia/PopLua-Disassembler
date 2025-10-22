@@ -2,10 +2,12 @@
 #define POPCONSTANT_H
 
 #include <string>
+#include <cstdint>
+#include <iostream>
 
 namespace popLua {
 
-	typedef enum cType : uint8_t { nil, numFloat = 3, numInt, str };
+	enum cType : uint8_t { nil, numFloat = 3, numInt, str };
 
 	class popConstant {
 	public:

@@ -2,6 +2,7 @@
 #define POPREGISTER_H
 
 #include <vector>
+#include <iostream>
 #include "popLocal.h"
 
 namespace popLua {

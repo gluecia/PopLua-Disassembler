@@ -1,9 +1,12 @@
 #ifndef POPOP_H
 #define POPOP_H
 
+#include <cstdint>
+#include <iostream>
+
 namespace popLua {
 
-	static enum opType : uint8_t {
+	enum opType : uint8_t {
 		MOVE, LOADK, LOADBOOL, LOADNIL, GETUPVAL, GETGLOBAL, GETTABLE, SETGLOBAL,
 		SETUPVAL, SETTABLE, NEWTABLE, SELF, ADD, SUB, MUL, DIV,
 		POW, MOD, UNM, NOT, SIZ, CONCAT, JMP, EQ,

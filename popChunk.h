@@ -7,6 +7,8 @@
 #include "popConstant.h"
 #include "popRegister.h"
 #include <vector>
+#include <iostream>
+#include <cstdint>
 
 namespace popLua {
 

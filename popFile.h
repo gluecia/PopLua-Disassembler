@@ -4,6 +4,7 @@
 #include "popChunk.h"
 #include <iostream>
 #include <vector>
+#include <cstdint>
 
 namespace popLua {
 

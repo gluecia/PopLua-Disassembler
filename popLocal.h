@@ -2,6 +2,7 @@
 #define POPLOCAL_H
 
 #include <string>
+#include <cstdint>
 
 namespace popLua {
 
